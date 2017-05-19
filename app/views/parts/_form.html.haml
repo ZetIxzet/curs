@@ -1,0 +1,19 @@
+= form_for @part do |f|
+  - if @part.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@part.errors.count, "error")} prohibited this part from being saved:"
+      %ul
+        - @part.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :role
+    = f.text_area :role
+  .field
+    = f.label :film
+    = f.text_field :film
+  .field
+    = f.label :actor
+    = f.text_field :actor
+  .actions
+    = f.submit 'Сохранить'

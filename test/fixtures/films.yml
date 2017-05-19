@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  genre: MyText
+  lasting: MyText
+  country: MyText
+  companies: MyText
+  min_age: 1
+
+two:
+  name: MyText
+  genre: MyText
+  lasting: MyText
+  country: MyText
+  companies: MyText
+  min_age: 1

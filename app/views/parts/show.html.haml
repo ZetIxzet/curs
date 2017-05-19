@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Роль:
+  = @part.role
+%p
+  %b Фильм:
+  = @part.film
+%p
+  %b Актёр:
+  = @part.actor
+
+= link_to 'Редактировать', edit_part_path(@part)
+\|
+= link_to 'Назад', parts_path

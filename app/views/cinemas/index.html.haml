@@ -1,0 +1,21 @@
+%h1 Список кинотеатров
+
+%table
+  %thead
+    %tr
+      %th Название
+      %th Адресс
+
+
+  %tbody
+    - @cinemas.each do |cinema|
+      %tr
+        %td= cinema.name
+        %td= cinema.address
+        %td= link_to 'Показать', cinema
+        %td= link_to 'Редактировать', edit_cinema_path(cinema)
+        %td= link_to 'Удалить', cinema, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Новый кинотеатр', new_cinema_path

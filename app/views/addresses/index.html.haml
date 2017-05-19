@@ -1,0 +1,23 @@
+%h1 Список адресов
+
+%table
+  %thead
+    %tr
+      %th Фильм
+      %th Кинотеатр
+      %th
+      %th
+      %th
+
+  %tbody
+    - @addresses.each do |address|
+      %tr
+        %td= address.film
+        %td= address.cinema
+        %td= link_to 'Показать', address
+        %td= link_to 'Редактировать', edit_address_path(address)
+        %td= link_to 'Удалить', address, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Новый адрес', new_address_path

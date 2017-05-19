@@ -1,0 +1,28 @@
+= form_for @film do |f|
+  - if @film.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@film.errors.count, "error")} prohibited this film from being saved:"
+      %ul
+        - @film.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_area :name
+  .field
+    = f.label :genre
+    = f.text_area :genre
+  .field
+    = f.label :lasting
+    = f.text_area :lasting
+  .field
+    = f.label :country
+    = f.text_area :country
+  .field
+    = f.label :companies
+    = f.text_area :companies
+  .field
+    = f.label :min_age
+    = f.number_field :min_age
+  .actions
+    = f.submit 'Сохранить'

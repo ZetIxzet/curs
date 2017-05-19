@@ -1,0 +1,25 @@
+%h1 Список
+
+%table
+  %thead
+    %tr
+      %th Роль
+      %th Фильм
+      %th Актёр
+      %th
+      %th
+      %th
+
+  %tbody
+    - @parts.each do |part|
+      %tr
+        %td= part.role
+        %td= part.film
+        %td= part.actor
+        %td= link_to 'Показать', part
+        %td= link_to 'Редактировать', edit_part_path(part)
+        %td= link_to 'Удалить', part, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Новая запись', new_part_path

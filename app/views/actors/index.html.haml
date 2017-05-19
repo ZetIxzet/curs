@@ -1,0 +1,27 @@
+%h1 Список актёров
+
+%table
+  %thead
+    %tr
+      %th Имя
+      %th Фамилия
+      %th Отчество
+      %th День рождения
+      %th
+      %th
+      %th
+
+  %tbody
+    - @actors.each do |actor|
+      %tr
+        %td= actor.ln
+        %td= actor.fn
+        %td= actor.sn
+        %td= actor.birthday
+        %td= link_to 'Показать', actor
+        %td= link_to 'Редактировать', edit_actor_path(actor)
+        %td= link_to 'Удалить', actor, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Новый актёр', new_actor_path

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Названия:
+  = @cinema.name
+%p
+  %b Адресс:
+  = @cinema.address
+
+= link_to 'Редактировать', edit_cinema_path(@cinema)
+\|
+= link_to 'Назад', cinemas_path
