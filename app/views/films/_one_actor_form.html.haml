@@ -1,0 +1,30 @@
+= ar.hidden_field(:id)
+.col-md-12
+  .form-group
+    = ar.label :ln
+    = ar.text_field :ln, class: 'form-control'
+    = ar.error_messages_for(:ln)
+.col-md-12
+  .form-group
+    = ar.label :fn
+    = ar.text_field :fn, class: 'form-control'
+    = ar.error_messages_for(:fn)
+.col-md-12
+  .form-group
+    = ar.label :sn
+    = ar.text_field :sn, class: 'form-control'
+    = ar.error_messages_for(:sn)
+.col-md-12
+  .form-group
+    = ar.label :birthday
+    .input-group.date.datepicker
+      = ar.text_field :birthday, value: lnil(ar.object.birthday), class: 'form-control'
+      %span.input-group-addon
+        %span.glyphicon.glyphicon-calendar
+    = ar.error_messages_for(:birthday)
+-# .col-md-12
+-#   .form-group
+-#     = ar.check_box :_destroy
+-#     = ar.label :_destroy, "Удалить?"
+
+

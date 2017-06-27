@@ -1,12 +1,16 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @cinema.name
+  %li
+    = link_to 'Кинотеатры', cinemas_path
+  %li
+    Кинотеатры/Фильмы
 
-%p
-  %b Названия:
-  = @cinema.name
-%p
-  %b Адресс:
-  = @cinema.address
+%h1= @cinema.name
 
-= link_to 'Редактировать', edit_cinema_path(@cinema)
-\|
-= link_to 'Назад', cinemas_path
+%dl
+  %dt= Cinema.human_attribute_name(:name)
+  %dd= @cinema.name
+
+  %dt= Cinema.human_attribute_name(:address)
+  %dd= @cinema.address

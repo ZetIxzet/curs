@@ -1,0 +1,16 @@
+.col-md-6
+  %div{class: 'panel panel-'+ (i.kind_of?(Integer) ? 'success' : 'info')}
+    .panel-heading
+      Адрес
+      = i
+      %span.toright
+        = link_to_remove_address(fr)
+
+      .clearfix
+    .panel-body
+      .row
+        .col-md-12
+          .form-group
+            = fr.label :film_id, "Фильм"
+            = fr.select :film_id, Film.all.map{|x| [x.name, x.id]}, {}, class: 'form-control'
+            = fr.error_messages_for(:film_id)

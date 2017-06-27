@@ -1,16 +1,23 @@
-= form_for @cinema do |f|
-  - if @cinema.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@cinema.errors.count, "error")} prohibited this cinema from being saved:"
-      %ul
-        - @cinema.errors.full_messages.each do |message|
-          %li= message
 
-  .field
-    = f.label :name
-    = f.text_area :name
-  .field
-    = f.label :address
-    = f.text_area :address
-  .actions
-    = f.submit 'Сохранить'
+= form_for @cinema do |f|
+  = error_messages_for @cinema
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-primary'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :name
+        = f.text_area :name, class: 'form-control', rows: 1
+        = f.error_messages_for(:name)
+    .col-md-6
+      .form-group
+        = f.label :address
+        = f.text_area :address, class: 'form-control', rows: 1
+        = f.error_messages_for(:address)
+  .row.bottom20
+    .col-md-12
+      = link_to_add_address(f)
+  - i = 0
+  = f.fields_for(:addresses) do |fr|
+    = fr.hidden_field(:id)
+    = render('cinemas/one_address_form', fr: fr, i: i += 1)

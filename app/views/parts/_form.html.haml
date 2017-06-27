@@ -1,10 +1,5 @@
 = form_for @part do |f|
-  - if @part.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@part.errors.count, "error")} prohibited this part from being saved:"
-      %ul
-        - @part.errors.full_messages.each do |message|
-          %li= message
+  = error_messages_for @part
 
   .field
     = f.label :role

@@ -23,6 +23,10 @@
           = link_to(url_for(controller: item[:controller], action: item[:action]), class: item[:class]) do
             = fa_icon(item[:icon], class: 'menu-icon')
             = item[:name]
+    %li
+      = link_to search_films_path, class: 'subitem' do
+        = fa_icon :search
+        = t('app.Поиск')
     %li.footer
       %div
         © В.Ю. Радыгин

@@ -1,28 +1,45 @@
 = form_for @film do |f|
-  - if @film.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@film.errors.count, "error")} prohibited this film from being saved:"
-      %ul
-        - @film.errors.full_messages.each do |message|
-          %li= message
+  = error_messages_for @film
+  .form-actions.bottom20
+    = f.submit nil, class: 'btn btn-primary'
+  .row
+    .col-md-6
+      .form-group
+        = f.label :name
+        = f.text_area :name, class: 'form-control', rows: 1
+        = f.error_messages_for(:name)
+    .col-md-6
+      .form-group
+        = f.label :genre
+        = f.text_area :genre, class: 'form-control', rows: 1
+        = f.error_messages_for(:genre)
+  .row
+    .col-md-6
+      .form-group
+        = f.label :lasting
+        = f.text_area :lasting, class: 'form-control', rows: 1
+        = f.error_messages_for(:lasting)
+    .col-md-6
+      .form-group
+        = f.label :country
+        = f.text_area :country, class: 'form-control', rows: 1
+        = f.error_messages_for(:country)
+  .row
+    .col-md-6
+      .form-group
+        = f.label :companies
+        = f.text_area :companies, class: 'form-control', rows: 1
+        = f.error_messages_for(:companies)
+    .col-md-6
+      .form-group
+        = f.label :min_age
+        = f.number_field :min_age, class: 'form-control'
+        = f.error_messages_for(:min_age)
 
-  .field
-    = f.label :name
-    = f.text_area :name
-  .field
-    = f.label :genre
-    = f.text_area :genre
-  .field
-    = f.label :lasting
-    = f.text_area :lasting
-  .field
-    = f.label :country
-    = f.text_area :country
-  .field
-    = f.label :companies
-    = f.text_area :companies
-  .field
-    = f.label :min_age
-    = f.number_field :min_age
-  .actions
-    = f.submit 'Сохранить'
+  .row.bottom20
+    .col-md-12
+      = link_to_add_part(f)
+  - i = 0
+  = f.fields_for(:parts) do |fr|
+    = fr.hidden_field(:id)
+    = render('films/one_part_form', fr: fr, i: i += 1)

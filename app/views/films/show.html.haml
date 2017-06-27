@@ -1,24 +1,37 @@
-%p#notice= notice
+=breadcrumb_tag do
+  %li.active
+    = @film.name
+  %li
+    = link_to 'Фильмы', films_path
+  %li
+    Кинотеатры/Фильмы
 
-%p
-  %b Названия:
-  = @film.name
-%p
-  %b Жанр:
-  = @film.genre
-%p
-  %b Длительность:
-  = @film.lasting
-%p
-  %b Страна:
-  = @film.country
-%p
-  %b Коипания:
-  = @film.companies
-%p
-  %b Минимальный возраст:
-  = @film.min_age
+%h1= @film.name
 
-= link_to 'Редактировать', edit_film_path(@film)
-\|
-= link_to 'Назад', films_path
+%dl
+  %dt= Film.human_attribute_name(:name)
+  %dd= @film.name
+
+  %dt= Film.human_attribute_name(:genre)
+  %dd= @film.genre
+
+  %dt= Film.human_attribute_name(:lasting)
+  %dd= @film.lasting
+
+  %dt= Film.human_attribute_name(:country)
+  %dd= @film.country
+
+  %dt= Film.human_attribute_name(:companies)
+  %dd= @film.companies
+
+  %dt= Film.human_attribute_name(:min_age)
+  %dd= @film.min_age
+
+= link_to edit_film_path(@film), class: 'btn btn-info' do
+  = fa_icon :edit
+  = t('buttons.edit')
+= link_to @film, :method => :delete,
+:data => { :confirm => t('buttons.confirm.film') },
+class: 'btn btn-danger' do
+  = fa_icon :times
+  = t('buttons.destroy')

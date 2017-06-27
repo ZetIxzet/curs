@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   resources :addresses
   resources :parts
   resources :actors
-  resources :films
+  resources :films do
+    collection do
+      get :search
+    end
+  end 
+
   resources :cinemas
   resources :role_users
   resources :roles

@@ -1,0 +1,105 @@
+=breadcrumb_tag do
+  %li.active
+    = t('app.films.Поиск')
+  %li
+    = link_to 'Фильмы', films_path
+
+
+.page-header
+
+  %h1= t('headers.films.Поиск')
+
+= form_tag(search_films_path(), :method => "get") do
+  .row
+  = link_to films_path, class: 'btn btn-warning' do
+    = t('buttons.Вернуться на страницу фильмов')
+  .row
+    .col-md-12
+      %h2 Поля для фильма
+  .row
+    .col-md-6
+      .form-group
+        = label_tag 'search[name]', "Название:"
+        = text_field_tag 'search[name]', nil,
+        placeholder: "Введите название фильма", class: 'form-control'
+    .col-md-6
+      .form-group
+        = label_tag 'search[genre]', "Жанр:"
+        = text_field_tag 'search[genre]', nil,
+        placeholder: "Введите жанр", class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = label_tag 'search[lasting]', "Продолжительность:"
+        = text_field_tag 'search[lasting]', nil,
+        placeholder: "Введите продолжительность", class: 'form-control'
+    .col-md-6
+      .form-group
+        = label_tag 'search[companies]', "Страна происхождения"
+        = text_field_tag 'search[companies]', nil,
+        placeholder: "Введите стану происхождения", class: 'form-control'
+    .col-md-12
+      .form-group
+        = label_tag 'search[min_age]', "Возраст:"
+        = text_field_tag 'search[min_age]', nil,
+        placeholder: "Введите минимальный возраст разрешенный для просмотра", class: 'form-control'
+
+  .row
+    .col-md-12
+      %h2 Поля для роли
+    .col-md-6
+      .form-group
+        = label_tag 'search[role]', "Роль:"
+        = text_field_tag 'search[role]', nil,
+        placeholder: "Введите роль", class: 'form-control'
+  .row
+    .col-md-12
+      %h2 Поля для актёра
+    .col-md-6
+      .form-group
+        = label_tag 'search[fn]', "Имя:"
+        = text_field_tag 'search[fn]', nil,
+        placeholder: "Введите имя", class: 'form-control'
+
+  .row
+    .col-md-6
+      .form-group
+        = label_tag 'search[ln]', "Фамилия:"
+        = text_field_tag 'search[ln]', nil,
+        placeholder: "Введите фамилию", class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = label_tag 'search[sn]', "Отчество:"
+        = text_field_tag 'search[sn]', nil,
+        placeholder: "Введите отчество", class: 'form-control'
+  .row
+    .col-md-6
+      .form-group
+        = label_tag 'search[birthday]', "Дата рождения:"
+        = text_field_tag 'search[birthday]', nil,
+        placeholder: "Введите дату рождения", class: 'form-control'
+
+
+  .row
+    .col-md-12.left
+      = submit_tag(:search_button, value: 'Поиск', class: 'btn btn-default')
+      = link_to search_films_path, class: 'btn btn-warning' do
+        = t('buttons.Очистить')
+      = link_to root_path, class: "btn btn-primary" do
+        = t('buttons.Вернуться на главную страницу')
+
+  %h3= t('headers.film.Результат поиска')
+  %dl.dl-horizontal
+  - @films.each do |film|
+    .row
+      = film.name.to_s + " / "
+      = film.genre.to_s + " / "
+      = film.lasting.to_s + " / "
+      = film.country.to_s + " / "
+      = film.companies.to_s + " / "
+      = film.min_age.to_s + " / "
+
+      = link_to film, class: 'btn btn-info' do
+        = fa_icon "eye"
+        = t('buttons.show')

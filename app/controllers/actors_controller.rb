@@ -28,7 +28,7 @@ class ActorsController < ApplicationController
 
     respond_to do |format|
       if @actor.save
-        format.html { redirect_to @actor, notice: 'Actor was successfully created.' }
+        format.html { redirect_to @actor, notice: 'Создано успешно!' }
         format.json { render :show, status: :created, location: @actor }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ActorsController < ApplicationController
   def update
     respond_to do |format|
       if @actor.update(actor_params)
-        format.html { redirect_to @actor, notice: 'Actor was successfully updated.' }
+        format.html { redirect_to @actor, notice: 'Обновленно успешно!' }
         format.json { render :show, status: :ok, location: @actor }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ActorsController < ApplicationController
   def destroy
     @actor.destroy
     respond_to do |format|
-      format.html { redirect_to actors_url, notice: 'Actor was successfully destroyed.' }
+      format.html { redirect_to actors_url, notice: 'Удалено успешно!' }
       format.json { head :no_content }
     end
   end

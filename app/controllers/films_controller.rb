@@ -1,5 +1,15 @@
 class FilmsController < ApplicationController
   before_action :set_film, only: [:show, :edit, :update, :destroy]
+  def search
+    if params.has_key?('search')
+      @films = Film.search(params['search'])
+    else
+      @films = []
+    end
+    params['search'] ||= {}
+  end
+
+
 
   # GET /films
   # GET /films.json
@@ -28,7 +38,7 @@ class FilmsController < ApplicationController
 
     respond_to do |format|
       if @film.save
-        format.html { redirect_to @film, notice: 'Film was successfully created.' }
+        format.html { redirect_to @film, notice: 'Создано успешно!' }
         format.json { render :show, status: :created, location: @film }
       else
         format.html { render :new }
@@ -42,7 +52,7 @@ class FilmsController < ApplicationController
   def update
     respond_to do |format|
       if @film.update(film_params)
-        format.html { redirect_to @film, notice: 'Film was successfully updated.' }
+        format.html { redirect_to @film, notice: 'Обновленно успешно!' }
         format.json { render :show, status: :ok, location: @film }
       else
         format.html { render :edit }
@@ -56,7 +66,7 @@ class FilmsController < ApplicationController
   def destroy
     @film.destroy
     respond_to do |format|
-      format.html { redirect_to films_url, notice: 'Film was successfully destroyed.' }
+      format.html { redirect_to films_url, notice: 'Удалено успешно!' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +79,8 @@ class FilmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def film_params
-      params.require(:film).permit(:name, :genre, :lasting, :country, :companies, :min_age)
+      params.require(:film).permit(:name, :genre, :lasting, :country, :companies, :min_age,
+ {parts_attributes: [:_destroy, :id, :role, :actor_id, :film_id,
+          actor_attributes: [:_destroy, :id, :ln, :fn, :sn, :birthday]]})
     end
 end

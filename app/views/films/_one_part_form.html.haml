@@ -1,0 +1,35 @@
+.col-md-6
+  %div{class: 'panel panel-'+ (i.kind_of?(Integer) ? 'success' : 'info')}
+    .panel-heading
+      Роль
+      = i
+      %span.toright
+        = link_to_remove_part(fr)
+
+      .clearfix
+    .panel-body
+      .row
+        .col-md-6
+          .form-group
+            = fr.label :role
+            = fr.text_field :role, class: 'form-control'
+            = fr.error_messages_for(:role)
+        .col-md-6
+          .form-group
+            = fr.label :actor_id
+            -# actor_options() в actors_helper
+            -# При выборе текущего актёра, его можно изменять, при выборе нового,
+            -# поля для него скрываются, при выборе пустоты в актёрах -
+            -# можно создать новый.
+            = fr.select :actor_id, actor_options(fr.object.actor_id),
+            {include_blank: true}, class: 'form-control actor-select', "data-current-id": fr.object.actor_id
+            = fr.error_messages_for(:actor_id)
+
+      .row
+        %fieldset.center
+          %legend Поля для человека
+          -# new_actor_form(fr) и exist_actor_form(fr) в actors_helper
+          .left.actor-main-fields{"data-content-new": "#{new_actor_form(fr)}",
+          "data-content-exist": "#{exist_actor_form(fr)}"}
+            = fr.fields_for(:actor) do |ar|
+              = render 'films/one_actor_form', ar: ar
